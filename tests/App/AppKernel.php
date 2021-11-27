@@ -18,6 +18,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 
 abstract class AppKernel extends Kernel
 {
@@ -43,7 +44,7 @@ abstract class AppKernel extends Kernel
         $loader->load($this->getProjectDir().'/config.yml');
     }
 
-    protected function configureRoutes(RoutingConfigurator $routes): void
+    protected function configureRoutes(/* RoutingConfigurator | RouteCollectionBuilder*/ $routes): void
     {
     }
 }
