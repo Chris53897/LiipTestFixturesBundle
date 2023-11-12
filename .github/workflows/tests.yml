@@ -105,6 +105,4 @@ jobs:
       - name: Run tests
         # In phpunit.xml.dist, tests annotated with "@group mysql" are excluded, revert this
         # Run tests twice to ensure that tests are idempotent even if database caching is enabled
-        run: |
-          php ./vendor/bin/phpunit --testdox --exclude-group ""
-          php ./vendor/bin/phpunit --testdox --exclude-group ""
+        run: php ./vendor/bin/phpunit --testdox --exclude-group "" --repeat 2
