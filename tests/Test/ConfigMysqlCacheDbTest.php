@@ -123,7 +123,6 @@ class ConfigMysqlCacheDbTest extends ConfigMysqlTest
             'Liip\Acme\Tests\App\DataFixtures\ORM\LoadUserData',
         ])->getReferenceRepository();
 
-        var_dump($referenceRepository->getReferencesByClass());
         $this->assertCount(1, $referenceRepository->getReferencesByClass()['Liip\Acme\Tests\App\Entity\User']);
 
         $referenceRepository = $this->databaseTool->loadFixtures([
