@@ -2,45 +2,45 @@
 
 # Tests/App/config.yml
 framework:
-    secret:          secret
-    test: ~
-    profiler:
-        collect: false
-    property_access: ~
+  secret:          secret
+  test: ~
+  profiler:
+    collect: false
+  property_access: ~
 
 monolog:
-    handlers:
-        main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
-        nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
+  handlers:
+    main:
+      type:         fingers_crossed
+      action_level: error
+      handler:      nested
+    nested:
+      type:  stream
+      path:  "%kernel.logs_dir%/%kernel.environment%.log"
+      level: debug
 
 liip_test_fixtures: ~
 
 doctrine:
-    orm:
-        default_entity_manager: default
-        entity_managers:
-            default:
-                connection: default
-                mappings:
-                    LiipAcme:
-                        dir: "%kernel.project_dir%/Entity"
-                        prefix: 'Liip\Acme\Tests\App\Entity'
-                        is_bundle: false
+  orm:
+    default_entity_manager: default
+    entity_managers:
+      default:
+        connection: default
+        mappings:
+          LiipAcme:
+            dir: "%kernel.project_dir%/Entity"
+            prefix: 'Liip\Acme\Tests\App\Entity'
+            is_bundle: false
 
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
+  _defaults:
+    autowire: true
+    autoconfigure: true
 
-    Liip\Acme\Tests\App\DataFixtures\ORM\:
-        resource: 'DataFixtures/ORM/*'
-        tags: ['doctrine.fixture.orm']
+  Liip\Acme\Tests\App\DataFixtures\ORM\:
+    resource: 'DataFixtures/ORM/*'
+    tags: ['doctrine.fixture.orm']
 
-    Liip\Acme\Tests\App\Service\:
-        resource: './Service/'
+  Liip\Acme\Tests\App\Service\:
+    resource: './Service/'

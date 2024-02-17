@@ -61,7 +61,7 @@ class User
     public function __construct()
     {
         $this->salt = sha1(
-            // http://php.net/manual/fr/function.openssl-random-pseudo-bytes.php
+        // http://php.net/manual/fr/function.openssl-random-pseudo-bytes.php
             bin2hex(openssl_random_pseudo_bytes(100))
         );
     }
