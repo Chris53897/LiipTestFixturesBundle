@@ -23,8 +23,7 @@ use Liip\TestFixturesBundle\Services\DatabaseTools\ORMDatabaseTool;
  * they are disabled by default (see phpunit.xml.dist).
  *
  * In order to run them, you have to set the PostgreSQL connection
- * parameters in the Tests/AppConfigPgsql/config.yml file and
- * add “--exclude-group ""” when running PHPUnit.
+ * parameters in the Tests/AppConfigPgsql/config.yml file.
  *
  * Use Tests/AppConfigPgsql/AppConfigPgsqlKernel.php instead of
  * Tests/App/AppKernel.php.
@@ -38,6 +37,29 @@ use Liip\TestFixturesBundle\Services\DatabaseTools\ORMDatabaseTool;
  */
 class ConfigPgsqlTest extends ConfigMysqlTest
 {
+    /**
+     * Load fixture which has a dependency.
+     */
+    public function testLoadDependentFixtures(): void
+    {
+        $fixtures = $this->databaseTool->loadFixtures([
+            'Liip\Acme\Tests\App\DataFixtures\ORM\LoadDependentUserData',
+        ]);
+
+        $this->assertInstanceOf(
+            'Doctrine\Common\DataFixtures\Executor\ORMExecutor',
+            $fixtures
+        );
+
+        $users = $this->userRepository->findAll();
+
+        // The two files with fixtures have been loaded, there are 4 users.
+        $this->assertCount(
+            4,
+            $users
+        );
+    }
+
     public function testToolType(): void
     {
         $this->assertInstanceOf(ORMDatabaseTool::class, $this->databaseTool);

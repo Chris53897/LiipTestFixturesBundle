@@ -18,11 +18,4 @@
             <directory>tests/Test</directory>
         </testsuite>
     </testsuites>
-
-    <groups>
-        <exclude>
-            <group>mysql</group>
-            <group>pgsql</group>
-        </exclude>
-    </groups>
 </phpunit>
